@@ -1,0 +1,143 @@
+:root {
+    --primary: #ffa116;
+    --gray: #bdbdbd;
+    --background: #f6f8fa;
+    --card: #fff;
+    --border: #e4e6e8;
+    --text: #262626;
+    --subtitle: #8c8c8c;
+    --notice-bg: #fffbe6;
+    --notice-border: #ffe58f;
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--background);
+    box-sizing: border-box;
+}
+
+/* Card styling */
+.card {
+    background: var(--card);
+    width: 340px;
+    max-width: 95vw;
+    padding: 32px 28px 24px 28px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border: 1px solid var(--border);
+}
+
+/* Icon styling */
+.icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: 40px;
+    color: var(--success);
+    width: 100%;
+}
+
+.icon i {
+    font-size: 40px;
+    color: var(--primary);
+}
+
+/* Active/inactive styles for icon and heading */
+.icon.active i {
+   color: var(--primary);
+    filter: none;
+    opacity: 1;
+}
+.icon.inactive i {
+    color: var(--gray);
+    filter: grayscale(1);
+    opacity: 0.6;
+}
+/* Heading styling */
+h2 {
+    margin: 0 0 4px 0;
+    font-size: 22px;
+    color: var(--primary);
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    text-align: center;
+}
+
+/* Subtitle styling */
+.sub {
+    font-size: 15px;
+    color: var(--subtitle);
+    margin: -8px 0 10px;
+    text-align: center;
+}
+
+/* Toggle and mode styling */
+.toggle label,
+.mode label {
+    font-size: 15px;
+    color: var(--text);
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+}
+
+.toggle label:hover,
+.mode label:hover {
+    background: var(--background);
+    border-color: var(--primary);
+}
+
+.toggle,
+.mode {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Disabled state for toggle/mode labels and inputs */
+.toggle label:has(input:disabled),
+.mode label:has(input:disabled) {
+    background: var(--background) !important;
+    color: var(--gray) !important;
+    border-color: var(--border) !important;
+    cursor: not-allowed !important;
+    opacity: 0.7;
+}
+
+input:disabled {
+    accent-color: var(--border) !important;
+    color: var(--gray);
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* Input styling */
+input[type="checkbox"],
+input[type="radio"] {
+    transform: scale(1.15);
+    accent-color: var(--primary);
+    margin-right: 6px;
+}
+
+/* Notice styling */
+.notice {
+    font-size: 13px;
+    color: var(--subtitle);
+    background: var(--notice-bg);
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid var(--notice-border);
+    margin-top: 8px;
+}

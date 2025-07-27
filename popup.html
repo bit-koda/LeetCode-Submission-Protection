@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+    <head>
+        <title>LeetCode Guard</title>
+        <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+    </head>
+    <body>
+        <div class="card">
+            <div class="icon">
+                <i class="fa fa-shield-alt"></i>
+            </div>
+            <h2>LeetCode Submission Protection</h2>
+            <p class="sub">Prevents accidental submits or test runs.</p>
+
+            <div class="toggle">
+                <label>
+                    <input type="checkbox" id="enableProtection" />
+                    Enable Button Protection
+                </label>
+            </div>
+
+            <div class="mode">
+                <label>
+                    <input type="radio" name="mode" value="disable" checked />
+                    Disable Submission Button
+                </label>
+                <label>
+                    <input type="radio" name="mode" value="hide" />
+                    Hide Submission Button
+                </label>
+            </div>
+
+            <div class="toggle">
+                <label>
+                    <input type="checkbox" id="blockShortcut" />
+                    Block Ctrl+Enter / Cmd+Enter
+                </label>
+            </div>
+
+            <div class="notice">Changes auto-refresh LeetCode tab.</div>
+        </div>
+
+        <script src="popup.js"></script>
+    </body>
+</html>
