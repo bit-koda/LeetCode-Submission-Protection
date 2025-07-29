@@ -1,4 +1,3 @@
-// Detect macOS safely
 function detectIsMac() {
   return (
     navigator.userAgentData?.platform === "macOS" ||
@@ -44,11 +43,17 @@ function showToast(message) {
   }, 2500);
 }
 
+
+// Store latest state for shortcut blocking
+window._lcProtectionState = { enabled: true, blockShortcut: true };
+
 function applyProtection(enabled, mode, blockShortcut) {
+  // Update global state for shortcut handler
+  window._lcProtectionState.enabled = enabled;
+  window._lcProtectionState.blockShortcut = blockShortcut;
+
   const observer = new MutationObserver(() => {
-    const btn = document.querySelector(
-      '[data-e2e-locator="console-submit-button"]',
-    );
+    const btn = document.querySelector('[data-e2e-locator="console-submit-button"]');
     if (btn) {
       // Reset to default
       btn.disabled = false;
@@ -79,24 +84,23 @@ function applyProtection(enabled, mode, blockShortcut) {
   });
 
   observer.observe(document.body, { childList: true, subtree: true });
+}
 
-  // Keyboard shortcut blocking
-  function blockShortcutHandler(e) {
+// Only one global shortcut handler, always uses latest state
+if (!window._lcBlockShortcutHandler) {
+  window._lcBlockShortcutHandler = function(e) {
     const isMac = detectIsMac();
     const isSubmitKey =
       (e.ctrlKey || (isMac && e.metaKey)) && e.key === "Enter";
-
-    if (blockShortcut && isSubmitKey) {
+    const { enabled, blockShortcut } = window._lcProtectionState || {};
+    if (enabled && blockShortcut && isSubmitKey) {
       e.preventDefault();
       e.stopPropagation();
-
       const keyLabel = isMac ? "⌘+Enter" : "Ctrl+Enter";
       showToast(`${keyLabel} submission disabled by extension`);
     }
-  }
-
-  window.removeEventListener("keydown", blockShortcutHandler);
-  window.addEventListener("keydown", blockShortcutHandler, true);
+  };
+  window.addEventListener("keydown", window._lcBlockShortcutHandler, true);
 }
 
 // Load from chrome.storage and apply logic
