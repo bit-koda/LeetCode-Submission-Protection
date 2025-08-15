@@ -141,3 +141,21 @@ input[type="radio"] {
     border: 1px solid var(--notice-border);
     margin-top: 8px;
 }
+
+.credit {
+  margin-top: 18px;
+  font-size: 13px;
+  color: #888;
+  text-align: center;
+  letter-spacing: 0.2px;
+}
+.credit-link {
+  color: #4a90e2;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.credit-link:hover {
+  color: #23527c;
+  text-decoration: underline;
+}
